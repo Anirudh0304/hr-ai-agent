@@ -13,7 +13,7 @@ The final ranked list is designed to be immediately actionable for recruiters.
 - Backend: FastAPI pipeline API
 - LLM: Local Ollama (optional; automatic fallback to deterministic simulation if unavailable)
 
-If you deploy the frontend to Netlify, it serves as the demo URL while backend runs locally or on your cloud host.
+For a free-only deployment, use Netlify for the frontend and Hugging Face Spaces for the backend.
 
 ## Project Structure
 
@@ -139,7 +139,28 @@ Summary:
 - Candidate sample CSV: `examples/sample_candidates.csv`
 - Ranked output sample: `examples/sample_output.json`
 
-## Netlify Deployment (Frontend)
+## Free Deployment Plan
+
+Use this setup if you want to avoid card-gated platforms:
+- Frontend: Netlify
+- Backend: Hugging Face Spaces (Docker)
+
+### 1) Deploy the backend to Hugging Face Spaces
+
+This repo includes a root [Dockerfile](Dockerfile) that starts the FastAPI app on port 7860.
+
+1. Create a new Hugging Face Space.
+2. Choose Docker as the Space SDK.
+3. Push this repository contents to the Space or upload the backend files plus [Dockerfile](Dockerfile).
+4. Add a Space secret or variable if needed:
+  - Key: `ALLOWED_ORIGINS`
+  - Value: your Netlify URL, for example `https://your-site.netlify.app`
+5. Wait for the Space to build.
+
+Health check URL:
+- `https://<your-space-name>.hf.space/health`
+
+### 2) Deploy the frontend to Netlify
 
 1. Push this repository to GitHub.
 2. In Netlify, import the repo.
@@ -151,51 +172,13 @@ Summary:
 
 Set Netlify environment variable for backend API:
 - Key: `VITE_API_BASE_URL`
-- Value: your backend URL (example: `https://your-backend.onrender.com`)
+- Value: your Hugging Face Space URL, for example `https://your-space-name.hf.space`
 
 No code changes are needed for API URL switching because frontend reads `VITE_API_BASE_URL`.
 
-## Backend Cloud Deployment
+## Optional Paid-Host Files
 
-You can deploy the backend to either Render or Railway.
-
-### Option A: Render (Blueprint)
-
-This repo includes `render.yaml` at project root.
-
-1. Push repo to GitHub.
-2. In Render, create a new Blueprint and connect the repo.
-3. Render will detect `render.yaml` and provision the web service.
-4. Set environment variable in Render service:
-  - Key: `ALLOWED_ORIGINS`
-  - Value: your Netlify URL (example: `https://your-site.netlify.app`)
-5. Deploy and copy the backend URL.
-
-Health check URL:
-- `https://<your-render-service>/health`
-
-### Option B: Railway
-
-This repo includes `railway.json` at project root.
-
-1. Push repo to GitHub.
-2. In Railway, create a new project from the repo.
-3. Railway uses `railway.json` to build and run the backend.
-4. Set environment variable in Railway service:
-  - Key: `ALLOWED_ORIGINS`
-  - Value: your Netlify URL (example: `https://your-site.netlify.app`)
-5. Deploy and copy the backend URL.
-
-Health check URL:
-- `https://<your-railway-service>/health`
-
-### Connect Netlify Frontend to Hosted Backend
-
-In Netlify site settings, add environment variable:
-- Key: `VITE_API_BASE_URL`
-- Value: your backend public URL from Render or Railway
-
-Then trigger a Netlify redeploy.
+This repo also contains `render.yaml` and `railway.json` for reference, but those hosts may require card details. If your goal is strictly free hosting, use the Netlify + Hugging Face Spaces setup above.
 
 ## Notes for Submission Requirements
 
