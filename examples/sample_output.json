@@ -1,0 +1,79 @@
+{
+  "jd": {
+    "title": "Senior AI Engineer",
+    "summary": "We are hiring a Senior AI Engineer with strong Python, FastAPI, LLM application development, AWS, and Docker experience. You will build candidate intelligence tools and own end-to-end delivery. Nice to have: React and Kubernetes.",
+    "required_skills": [
+      "aws",
+      "docker",
+      "fastapi",
+      "llm",
+      "python"
+    ],
+    "optional_skills": [
+      "kubernetes",
+      "react"
+    ],
+    "seniority": "senior"
+  },
+  "shortlist": [
+    {
+      "candidate_id": "C-001",
+      "name": "Anya Krish",
+      "match_score": 93.2,
+      "interest_score": 83.0,
+      "final_score": 89.12,
+      "match_reason": {
+        "matched_skills": [
+          "aws",
+          "docker",
+          "fastapi",
+          "llm",
+          "python"
+        ],
+        "missing_skills": [],
+        "keyword_hits": 5
+      },
+      "engagement_summary": "High intent signals in profile summary."
+    },
+    {
+      "candidate_id": "C-003",
+      "name": "Maya Iyer",
+      "match_score": 79.6,
+      "interest_score": 76.0,
+      "final_score": 78.16,
+      "match_reason": {
+        "matched_skills": [
+          "docker",
+          "python"
+        ],
+        "missing_skills": [
+          "aws",
+          "fastapi",
+          "llm"
+        ],
+        "keyword_hits": 2
+      },
+      "engagement_summary": "High intent signals in profile summary."
+    },
+    {
+      "candidate_id": "C-005",
+      "name": "Lina Roy",
+      "match_score": 73.4,
+      "interest_score": 68.0,
+      "final_score": 71.24,
+      "match_reason": {
+        "matched_skills": [
+          "aws",
+          "python"
+        ],
+        "missing_skills": [
+          "docker",
+          "fastapi",
+          "llm"
+        ],
+        "keyword_hits": 2
+      },
+      "engagement_summary": "Neutral intent; needs stronger value proposition."
+    }
+  ]
+}
